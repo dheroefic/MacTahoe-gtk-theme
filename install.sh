@@ -47,7 +47,7 @@ usage() {
   helpify "--round, --roundedmaxwindow"   ""                                                  "  Set maximized window to rounded"                 "Default is square"
   helpify "--darker, --darkercolor"       ""                                                  "  Install darker '${THEME_NAME}' dark themes"      ""
   helpify "--silent-mode"                 ""                                                  "  Meant for developers: ignore any confirm prompt and params become more strict" ""
-  helpify "-r, --remove, -u, --uninstall" ""                                                  "  Remove all installed ${THEME_NAME} themes"       ""
+  helpify "-r, --remove, -u, --uninstall" "[theme|app]"                                       "  theme: remove all installed ${THEME_NAME} themes, app: remove gnome-theme-switcher app"       ""
   helpify "-h, --help"                    ""                                                  "  Show this help"                                  ""
 }
 
@@ -124,7 +124,16 @@ while [[ $# -gt 0 ]]; do
     -f|--fixed)
       accent_type="fixed"; shift ;;
     -r|--remove|-u|-uninstall)
-      uninstall='true'; shift ;;
+      uninstall='true'; shift
+      for type in "${@}"; do
+      case "${type}" in
+        theme)
+          remove_theme="true"; shift ;;
+        app)
+          remove_app="true"; shift ;;
+      esac
+      done
+      ;;
     --silent-mode)
       full_sudo "${1}"; silent_mode='true'; shift ;;
     -h|--help)
@@ -153,6 +162,12 @@ if [[ "${uninstall}" == 'true' ]]; then
     remove_themes; remove_libadwaita
     prompt -s "Done! All '${name}' gtk themes have been removed."
   fi
+  
+  if [[ "${remove_app}" == 'true' ]]; then
+    echo -e "\nUninstall 'gnome-theme-switcher' app..."
+    rm -rf "${BIN_DIR}/gnome-theme-switcher"
+    rm -rf "${APP_DIR}/org.gnome.GTK4ThemeSwitcher.desktop"
+  fi
 
 if [[ -f "${MISC_GR_FILE}.bak" ]]; then
     prompt -e "Find installed GDM theme, remove it now !"
@@ -164,6 +179,8 @@ else
   clean_themes; customize_theme; avoid_variant_duplicates;
 
   prompt -w "Installing '${name}' themes in '${dest}'...\n";
+
+  install_app
 
   prompt -t "--->>> GTK | GNOME Shell | Cinnamon | Metacity | XFWM | Plank <<<---"
   prompt -i "Color variants   : $( IFS=';'; echo "${colors[*]}" )"

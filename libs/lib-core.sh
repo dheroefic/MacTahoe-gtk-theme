@@ -105,10 +105,19 @@ FLOORP_FLATPAK_THEME_DIR="${MY_HOME}/.var/app/one.ablaze.floorp/.floorp/themes"
 # Other
 export MACTAHOE_TMP_DIR="/tmp/$THEME_NAME.lock"
 
+# Destination directory
 if [[ -w "/root" ]]; then
   THEME_DIR="/usr/share/themes"
 else
   THEME_DIR="$HOME/.themes"
+fi
+
+if [[ -w "/root" ]]; then
+  APP_DIR="/usr/share/applications"
+  BIN_DIR="/usr/bin"
+else
+  APP_DIR="$HOME/.local/share/applications"
+  BIN_DIR="$HOME/.local/bin"
 fi
 
 #--------------GDM----------------#
