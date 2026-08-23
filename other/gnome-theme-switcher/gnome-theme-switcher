@@ -294,7 +294,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self.filter_and_render_themes()
         
         count_gtk4 = sum(1 for t in self.all_themes if t["has_gtk4"])
-        status_msg = f"{len(self.all_themes)} topics have been found (of which {count_gtk4} contain GTK 4 configurations)"
+        status_msg = f"{len(self.all_themes)} theme have been found (of which {count_gtk4} contain GTK 4 configurations)"
         if self.active_theme_name:
             status_msg += f" | Currently in effect: {self.active_theme_name}"
         self.status_label.set_text(status_msg)

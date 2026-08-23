@@ -444,7 +444,7 @@ install_theemy() {
 
   #--------------------GTK-3.0--------------------#
 
-  mkdir -p                                                                                    "${TMP_DIR_T}"
+  #mkdir -p                                                                                    "${TMP_DIR_T}"
   #cp -r "${THEME_SRC_DIR}/assets/gtk/common-assets/assets"                                    "${TMP_DIR_T}"
   #cp -r "${THEME_SRC_DIR}/assets/gtk/scalable"                                                "${TMP_DIR_T}/assets"
   #cp -r "${THEME_SRC_DIR}/assets/gtk/windows-assets/titlebutton${alt}${scheme}"               "${TMP_DIR_T}/windows-assets"
