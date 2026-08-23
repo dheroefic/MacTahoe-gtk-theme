@@ -618,7 +618,7 @@ toolbarview.undershoot-bottom scrolledwindow {
     padding: $container_padding $container_padding * 2;
   }
 
-  .navigation-sidebar:not(.view) {
+  list.navigation-sidebar:not(.view) {
     padding: $container_padding + 4px;
 
     > row {
