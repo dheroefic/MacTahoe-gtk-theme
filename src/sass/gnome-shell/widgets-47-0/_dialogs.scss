@@ -5,7 +5,7 @@
   border-radius: $modal_radius + $base_padding;
   border: solid rgba(black, 0.75);
   border-width: if($variant=='light', 0, 1px);
-  box-shadow: 0 3px 6px 0 rgba(black, if($variant=='light', 0.25, 0.35));
+  box-shadow: inset 0 0 0 1px rgba(white, 0.1);
 }
 
 %last_dialog_button {
@@ -64,11 +64,11 @@
 
   .modal-dialog-button,
   .modal-dialog-linked-button {
-    min-height: 40px;
-    padding: 0 16px;
+    min-height: 48px;
+    padding: 0 8px;
     margin: 0;
     border: none !important;
-    border-radius: $modal_radius - $base_padding * 2;
+    border-radius: $modal_radius - $base_padding * 3;
     font-weight: bold;
 
     @include button(normal);
